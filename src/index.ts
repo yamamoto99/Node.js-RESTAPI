@@ -6,6 +6,8 @@ import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import router from './router';
+
 // Expressアプリケーションの作成
 const app = express();
 
@@ -36,3 +38,6 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 // 'error'イベントが発生した場合Error型のerrorを受け取り、コンソールに出力
 mongoose.connection.on('error', (error: Error) => console.log(error));
+
+// ルーターの設定
+app.use('/', router());
